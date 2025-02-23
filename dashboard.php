@@ -18,7 +18,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'create') {
 
     // Basic validation
     if (!empty($name) && !empty($url)) {
-        // Generate a unique ID (could be time-based, random, or something else)
+        // Generate a unique ID (could be time-based, random, etc.)
         $id = time();
         $webhooks[] = [
             'id'   => $id,
@@ -79,7 +79,14 @@ if (isset($_POST['action']) && $_POST['action'] === 'send') {
         // Send the message multiple times
         for ($i = 0; $i < $count; $i++) {
             $resp = sendDiscordWebhook($wh['url'], $msg);
-            // Optionally inspect $resp for errors or rate limits
+
+            // --- Debug lines (remove or comment out after troubleshooting) ---
+            echo "<pre>";
+            echo "Response: " . htmlspecialchars($resp['response']) . "\n";
+            echo "Error: " . htmlspecialchars($resp['error']) . "\n";
+            echo "HTTP Code: " . htmlspecialchars($resp['httpCode']) . "\n";
+            echo "</pre>";
+            // --- End Debug lines ---
 
             // Sleep only if not the last message
             if ($i < $count - 1) {
