@@ -1,15 +1,15 @@
 FROM php:8.1-apache
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y git zip unzip
+# Install any extra packages you might need
+RUN apt-get update && apt-get install -y \
+    zip \
+    unzip
 
-# Install Composer
-COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
-
-# Copy project files
+# Copy all project files into the container
 COPY . /var/www/html
 
+# Make /var/www/html the working directory
 WORKDIR /var/www/html
-RUN composer install
 
+# Expose port 80 for Render
 EXPOSE 80
