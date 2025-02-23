@@ -32,6 +32,7 @@ body {
   z-index: -1; /* keep it behind everything else */
 }
 
+/* Darker overlay on top of the background for readability */
 .background-container::after {
   content: "";
   position: absolute;
@@ -39,32 +40,36 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4); /* Slightly darker than 0.3 */
+  background: rgba(0, 0, 0, 0.4); /* Slightly darker overlay */
 }
 
-/* Add a subtle overlay on top of the background if desired */
-.background-container::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.3); /* slightly dark overlay */
-}
-
-/* Login container styling */
+/* Login container styling with stronger frosted-glass effect */
 .login-container {
   position: relative;
   max-width: 400px;
   margin: 60px auto;
   padding: 30px;
-  background: rgba(255, 255, 255, 0.2); /* semi-transparent white */
+  background: rgba(255, 255, 255, 0.25); /* more opaque for clarity */
   border-radius: 8px;
-  backdrop-filter: blur(10px); /* frosted glass effect */
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(15px); /* increased blur for stronger effect */
+  -webkit-backdrop-filter: blur(15px);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2); /* subtle border */
+  transition: transform 0.2s ease-in-out; /* for hover scaling */
+}
+
+/* Slight scale on hover for a modern feel */
+.login-container:hover {
+  transform: scale(1.01);
+}
+
+/* Heading styling */
+.login-container h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 2rem;
+  font-weight: 700;
 }
 
 /* Error message styling */
@@ -75,9 +80,9 @@ body {
   font-size: 0.9rem;
 }
 
-/* Input group styling */
+/* Input group styling with more spacing */
 .input-group {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .input-group label {
@@ -87,29 +92,38 @@ body {
   font-size: 0.95rem;
 }
 
+/* Inputs with a bit more padding and focus effect */
 .input-group input {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   border: none;
   border-radius: 4px;
   outline: none;
+  font-size: 0.95rem;
+  transition: box-shadow 0.2s ease-in-out;
 }
 
-/* Button styling */
+.input-group input:focus {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+/* Button styling with hover animation */
 .btn {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   background: linear-gradient(90deg, #0053a0, #0d324d);
   border: none;
   color: #ffffff;
   font-size: 1rem;
+  font-weight: 600;
   border-radius: 4px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .btn:hover {
   background: linear-gradient(90deg, #0d324d, #0053a0);
+  transform: translateY(-2px);
 }
 
 /* Footer text styling */
@@ -131,8 +145,5 @@ body {
     margin: 40px auto;
     padding: 20px;
   }
-  .close-button {
-    top: 10px;
-    right: 10px;
-  }
 }
+
