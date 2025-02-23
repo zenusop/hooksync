@@ -1,17 +1,18 @@
-FROM php:8.1-apache
+# Use an official Node runtime as a parent image
+FROM node:14-alpine
 
-# Install any needed packages
-RUN apt-get update && apt-get install -y \
-    zip \
-    unzip
+# Set the working directory in the container
+WORKDIR /app
 
-# Copy project files into the container
-COPY . /var/www/html
+# Copy package files and install dependencies
+COPY package*.json ./
+RUN npm install
 
-# Set the correct ownership and permissions
-RUN chown -R www-data:www-data /var/www/html/data
-RUN chmod -R 775 /var/www/html/data
+# Copy the rest of the application code
+COPY . .
 
-WORKDIR /var/www/html
+# Expose the port your app runs on
+EXPOSE 3000
 
-EXPOSE 80
+# Start the application
+CMD ["npm", "start"]
