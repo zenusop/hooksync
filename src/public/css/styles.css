@@ -1,5 +1,14 @@
+/* 1) Import Montserrat at the very top */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
+/* 2) Reset some defaults first */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 3) Body styling with Montserrat applied */
 body {
   margin: 0;
   padding: 0;
@@ -9,13 +18,6 @@ body {
   align-items: center;
   justify-content: center;
   font-family: 'Montserrat', sans-serif; /* Modern font family */
-}
-
-/* Reset some defaults */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }
 
 /* Background container holds the scenic image */
