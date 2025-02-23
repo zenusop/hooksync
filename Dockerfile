@@ -1,15 +1,17 @@
 FROM php:8.1-apache
 
-# Install any extra packages you might need
+# Install any needed packages
 RUN apt-get update && apt-get install -y \
     zip \
     unzip
 
-# Copy all project files into the container
+# Copy project files into the container
 COPY . /var/www/html
 
-# Make /var/www/html the working directory
+# Set the correct ownership and permissions
+RUN chown -R www-data:www-data /var/www/html/data
+RUN chmod -R 775 /var/www/html/data
+
 WORKDIR /var/www/html
 
-# Expose port 80 for Render
 EXPOSE 80
