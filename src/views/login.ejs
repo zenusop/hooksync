@@ -20,34 +20,58 @@
   <div class="background-container"></div>
 
   <!-- Login container with frosted-glass style -->
+  <!-- Keeping Animate.css fade-in class, but you also have slideDownFade in your CSS if desired -->
   <div class="login-container animate__animated animate__fadeInDown">
+
+    <!-- OPTIONAL: Logo or branding -->
+    <!-- Remove this block if you don’t have a logo -->
+    <div class="logo">
+      <img src="/images/logo.png" alt="Site Logo">
+    </div>
+
     <h1>Login</h1>
+
     <% if (error) { %>
       <p class="error animate__animated animate__shakeX">
         <i class="fas fa-exclamation-triangle"></i> <%= error %>
       </p>
     <% } %>
+
     <form action="/auth/login" method="POST">
-      <div class="input-group">
-        <label for="username"><i class="fas fa-user"></i> Username</label>
-        <input
-          type="text"
-          name="username"
-          id="username"
-          required
-          placeholder="Enter your username"
-        >
+      <!-- USERNAME Field with icon -->
+      <div class="input-group with-icon">
+        <label for="username">Username</label>
+        <div class="icon-wrapper">
+          <!-- Icon positioned absolutely (CSS: .icon-wrapper i) -->
+          <i class="fas fa-user" aria-hidden="true"></i>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            required
+            placeholder="Enter your username"
+            aria-label="Username"
+          >
+        </div>
       </div>
-      <div class="input-group">
-        <label for="password"><i class="fas fa-lock"></i> Password</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          required
-          placeholder="Enter your password"
-        >
+
+      <!-- PASSWORD Field with icon -->
+      <div class="input-group with-icon">
+        <label for="password">Password</label>
+        <div class="icon-wrapper">
+          <i class="fas fa-lock" aria-hidden="true"></i>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            required
+            placeholder="Enter your password"
+            aria-label="Password"
+          >
+        </div>
       </div>
+
+      <!-- Login Button -->
       <button type="submit" class="btn">Login</button>
     </form>
   </div>
