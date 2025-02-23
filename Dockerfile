@@ -1,15 +1,15 @@
-# Use an official PHP-Apache base image
 FROM php:8.1-apache
 
-# Enable any PHP extensions you need, for example:
-RUN docker-php-ext-install pdo pdo_mysql
+# Install system dependencies
+RUN apt-get update && apt-get install -y git zip unzip
 
-# Copy your application code into the container
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+
+# Copy project files
 COPY . /var/www/html
 
-# Expose port 80 to match Render’s required port
-EXPOSE 80
+WORKDIR /var/www/html
+RUN composer install
 
-# By default, the official php:apache image
-# automatically runs Apache in the foreground,
-# so no CMD line is needed unless you want to modify the defaults
+EXPOSE 80
