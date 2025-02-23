@@ -46,3 +46,28 @@ function findWebhook($id, $webhooks) {
     }
     return null;
 }
+
+/**
+ * Send a message to a Discord webhook
+ */
+function sendDiscordWebhook($webhookUrl, $message) {
+    // Prepare the JSON payload
+    $payload = [
+        'content' => $message,
+        // You can also set 'username' or 'avatar_url' if you want to override them
+    ];
+    $jsonData = json_encode($payload);
+
+    // Initialize cURL
+    $ch = curl_init($webhookUrl);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    // Execute and close
+    $response = curl_exec($ch);
+    curl_close($ch);
+
+    return $response; // In case you want to inspect it
+}
