@@ -48,7 +48,7 @@ function findWebhook($id, $webhooks) {
 }
 
 /**
- * Send a message to a Discord webhook
+ * Send a message to a Discord webhook (with debug info)
  */
 function sendDiscordWebhook($webhookUrl, $message) {
     // Prepare the JSON payload
@@ -65,9 +65,20 @@ function sendDiscordWebhook($webhookUrl, $message) {
     curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-    // Execute and close
+    // Execute request
     $response = curl_exec($ch);
+
+    // Gather error info and HTTP status code
+    $error    = curl_error($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+    // Close cURL
     curl_close($ch);
 
-    return $response; // In case you want to inspect it
+    // Return detailed info for debugging
+    return [
+        'response' => $response,  // Discord's raw response (often empty on success)
+        'error'    => $error,     // cURL error (if any)
+        'httpCode' => $httpCode   // HTTP status code (e.g. 204 = success, 400/429 = error)
+    ];
 }
