@@ -3,7 +3,7 @@ document.getElementById('webhookForm').addEventListener('submit', function(e) {
   var message = this.message.value;
 
   // Replace with your deployed Python service URL:
-  var pythonServiceURL = 'https://your-python-service.onrender.com/send-webhook';
+  var pythonServiceURL = 'https://hooksync.onrender.com/send-webhook';
 
   fetch(pythonServiceURL, {
     method: 'POST',
