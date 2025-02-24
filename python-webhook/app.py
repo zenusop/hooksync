@@ -5,7 +5,7 @@ import os
 app = Flask(__name__)
 
 # Set your Discord webhook URL as an environment variable in Render.
-DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL", "https://discord.com/api/webhooks/your_default_url")
+DISCORD_WEBHOOK_URL = os.environ.get("https://discord.com/api/webhooks/1341946734376521749/4BQRcnmgZqFvMAfOkMV7GPELprW6xGcXo-YnOE4y515s_TmSsl6Jl69iQHVVx76xMuLn", "https://discord.com/api/webhooks/your_default_url")
 
 @app.route('/send-webhook', methods=['POST'])
 def send_webhook():
